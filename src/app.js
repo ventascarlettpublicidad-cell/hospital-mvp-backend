@@ -1,3 +1,4 @@
+const initDb = require('./config/initDb');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -37,6 +38,8 @@ app.use((err, req, res, next) => {
 app.use((req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
 });
+
+initDb();
 
 const PORT = process.env.PORT || 3000;
 
