@@ -29,6 +29,26 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// 🔥 Endpoint temporal para crear admin
+app.get('/create-admin', async (req, res) => {
+  try {
+    const pool = require('./config/database');
+    const bcrypt = require('bcrypt');
+
+    const hashed = await bcrypt.hash('123456', 10);
+
+    await pool.query(`
+      INSERT INTO usuarios (nombre, email, password, activo)
+      VALUES ($1, $2, $3, $4)
+    `, ['Administrador', 'admin@hospital.com', hashed, true]);
+
+    res.json({ message: 'Admin creado correctamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error creando admin' });
+  }
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
