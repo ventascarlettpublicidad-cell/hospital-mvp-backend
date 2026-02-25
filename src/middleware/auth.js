@@ -1,13 +1,8 @@
 const jwt = require('jsonwebtoken');
-const { Pool } = require('pg');
+
 require('dotenv').config();
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+
 
 // Middleware para verificar JWT
 const authenticate = async (req, res, next) => {
@@ -114,5 +109,5 @@ module.exports = {
   authenticate,
   authorize,
   checkPermission,
-  pool
+  
 };
