@@ -1,8 +1,9 @@
-const initDb = require('./config/initDb');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
+
+const initDb = require('./config/initDb'); // 👈 IMPORTANTE
 
 const app = express();
 
@@ -39,10 +40,11 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
 });
 
-
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, '0.0.0.0', async () => {
   console.log(`🚀 Hospital Management API running on port ${PORT}`);
-  await initDb();
+  await initDb(); // 👈 SOLO AQUÍ
 });
+
+module.exports = app;
