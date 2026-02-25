@@ -13,9 +13,9 @@ const initDb = async () => {
       );
     `);
 
-    console.log('✅ Tabla usuarios verificada/creada');
+    console.log('✅ Tabla usuarios verificada/creada correctamente');
   } catch (error) {
-    console.error('❌ Error inicializando la base de datos:', error);
+    console.error('❌ Error inicializando la base de datos:', error.message);
   }
 };
 
