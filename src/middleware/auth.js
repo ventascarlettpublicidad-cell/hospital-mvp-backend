@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-
+const pool = require('../config/database');
 require('dotenv').config();
 
 
