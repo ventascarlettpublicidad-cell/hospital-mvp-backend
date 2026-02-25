@@ -43,8 +43,7 @@ initDb();
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🏥 Hospital Management API running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', async () => {
+  console.log(`🚀 Hospital Management API running on port ${PORT}`);
+  await initDb();
 });
-
-module.exports = app;
