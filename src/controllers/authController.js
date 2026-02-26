@@ -1,7 +1,10 @@
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { pool } = require('../config/database');
 
+// =============================
 // LOGIN
+// =============================
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -29,7 +32,7 @@ exports.login = async (req, res) => {
       { expiresIn: '8h' }
     );
 
-   res.json({
+    res.json({
       message: 'Login exitoso',
       token,
       user: {
@@ -45,7 +48,9 @@ exports.login = async (req, res) => {
   }
 };
 
+// =============================
 // CREAR ADMIN INICIAL
+// =============================
 exports.createAdmin = async (req, res) => {
   try {
     const email = 'admin@hospital.com';
@@ -60,7 +65,7 @@ exports.createAdmin = async (req, res) => {
       return res.json({ message: 'Admin ya existe' });
     }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     await pool.query(
       `INSERT INTO usuarios (email, password, role)
