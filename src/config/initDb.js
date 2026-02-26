@@ -16,8 +16,8 @@ const initDb = async () => {
 
     console.log('✅ Tabla usuarios verificada/creada correctamente');
   } catch (error) {
-    console.error('❌ Error inicializando la base de datos:', error.message);
-    process.exit(1);
+    console.error('❌ Error inicializando la base de datos:', error);
+    // ❌ IMPORTANTE: NO usar process.exit()
   }
 };
 
