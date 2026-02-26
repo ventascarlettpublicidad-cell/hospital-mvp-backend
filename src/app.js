@@ -42,17 +42,13 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-const startServer = async () => {
-  try {
-    await initDb();
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(⁠ 🚀 Hospital Management API running on port ${PORT} ⁠);
-    });
-  } catch (error) {
-    console.error("❌ Error iniciando servidor:", error);
-  }
-};
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(⁠ 🚀 Hospital Management API running on port ${PORT} ⁠);
+});
 
-startServer();
+// Ejecutar DB sin bloquear el servidor
+initDb().catch(error => {
+  console.error("❌ Error inicializando base de datos:", error);
+});
 
 module.exports = app;
