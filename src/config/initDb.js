@@ -1,4 +1,4 @@
-const pool = require('./database');
+const { pool } = require('./database');
 
 const initDb = async () => {
   try {
@@ -8,6 +8,7 @@ const initDb = async () => {
         nombre VARCHAR(100),
         email VARCHAR(100) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
+        role VARCHAR(20) DEFAULT 'admin',
         activo BOOLEAN DEFAULT true,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
@@ -16,6 +17,7 @@ const initDb = async () => {
     console.log('✅ Tabla usuarios verificada/creada correctamente');
   } catch (error) {
     console.error('❌ Error inicializando la base de datos:', error.message);
+    process.exit(1);
   }
 };
 
