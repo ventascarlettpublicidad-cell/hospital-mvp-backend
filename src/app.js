@@ -45,7 +45,7 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(⁠`Hospital Management API running on port ${PORT}`⁠);
+  console.log("Hospital Management API running on port " + PORT);
 });
 
 // Ejecutar DB sin bloquear el servidor
